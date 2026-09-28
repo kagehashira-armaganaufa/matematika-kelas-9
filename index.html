@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matematika Kelas 9</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#061923;
+    color:white;
+}
+
+header{
+    text-align:center;
+    padding:30px 15px;
+    background:linear-gradient(135deg,#063b55,#061923);
+}
+
+header h1{
+    margin:0;
+    font-size:32px;
+    color:#62ddff;
+}
+
+header p{
+    color:#b9dbe5;
+}
+
+nav{
+    background:#04121a;
+    padding:10px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+nav button{
+    margin:4px;
+    padding:10px 14px;
+    border:0;
+    border-radius:10px;
+    background:#0b3345;
+    color:white;
+    cursor:pointer;
+}
+
+nav button:hover{
+    background:#087ca5;
+}
+
+section{
+    max-width:900px;
+    margin:20px auto;
+    padding:20px;
+}
+
+.card{
+    background:#0b2633;
+    border:1px solid #16475c;
+    border-radius:15px;
+    padding:18px;
+    margin-bottom:15px;
+}
+
+.card h2{
+    color:#62ddff;
+}
+
+.card h3{
+    color:#9eeaff;
+}
+
+.example{
+    background:#061923;
+    padding:12px;
+    border-radius:10px;
+    margin-top:10px;
+    color:#d9f8ff;
+}
+
+input{
+    width:90px;
+    padding:10px;
+    margin:5px;
+    border:1px solid #29758f;
+    border-radius:8px;
+    background:#061923;
+    color:white;
+    font-size:16px;
+}
+
+.action{
+    padding:10px 15px;
+    border:0;
+    border-radius:8px;
+    background:#0099cc;
+    color:white;
+    cursor:pointer;
+    margin:5px;
+}
+
+.action:hover{
+    background:#00bce8;
+}
+
+.result{
+    margin-top:12px;
+    padding:12px;
+    border-radius:8px;
+    background:#092f3e;
+    color:#72e5ff;
+    min-height:20px;
+}
+
+/* KARTESIUS */
+
+.graph-box{
+    overflow-x:auto;
+}
+
+canvas{
+    display:block;
+    margin:auto;
+    background:#03131c;
+    border:2px solid #17627d;
+    border-radius:10px;
+    max-width:100%;
+}
+
+.coordinate{
+    text-align:center;
+    margin-top:12px;
+    font-size:18px;
+    color:#67ddff;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#7fa9b5;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+    header h1{
+        font-size:27px;
+    }
+
+    section{
+        padding:12px;
+    }
+
+    .card{
+        padding:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌊 Matematika Kelas 9</h1>
+    <p>Persamaan Linear & Koordinat Kartesius</p>
+    <button class="action" onclick="mulai()">Mulai Belajar</button>
+</header>
+
+<nav>
+    <button onclick="scrollKe('materi')">📚 Materi</button>
+    <button onclick="scrollKe('plsv')">🧮 PLSV</button>
+    <button onclick="scrollKe('spldv')">➗ SPLDV</button>
+    <button onclick="scrollKe('kartesius')">📍 Kartesius</button>
+    <button onclick="scrollKe('quiz')">🧠 Quiz</button>
+</nav>
+
+<section id="materi">
+
+<div class="card">
+    <h2>📚 Persamaan Linear</h2>
+
+    <h3>1. PLSV</h3>
+    <p>
+        Persamaan Linear Satu Variabel adalah persamaan
+        yang hanya mempunyai satu variabel.
+    </p>
+
+    <div class="example">
+        3x + 5 = 14<br><br>
+        3x = 14 - 5<br>
+        3x = 9<br>
+        <b>x = 3</b>
+    </div>
+</div>
+
+<div class="card">
+
+    <h3>2. PLDV</h3>
+
+    <p>
+        Persamaan Linear Dua Variabel mempunyai dua variabel,
+        biasanya x dan y.
+    </p>
+
+    <div class="example">
+        2x + y = 7
+    </div>
+
+</div>
+
+<div class="card">
+
+    <h3>3. SPLDV</h3>
+
+    <p>
+        SPLDV adalah dua persamaan linear yang dicari
+        nilai x dan y-nya secara bersamaan.
+    </p>
+
+    <div class="example">
+        x + y = 7<br>
+        x - y = 1<br><br>
+
+        Hasil:<br>
+        <b>x = 4 dan y = 3</b>
+    </div>
+
+</div>
+
+</section>
+
+<!-- PLSV -->
+
+<section id="plsv">
+
+<div class="card">
+
+<h2>🧮 Kalkulator PLSV</h2>
+
+<p>Bentuk sederhana:</p>
+
+<p><b>ax + b = c</b></p>
+
+<input id="a" type="number" placeholder="a">
+<input id="b" type="number" placeholder="b">
+<input id="c" type="number" placeholder="c">
+
+<br>
+
+<button class="action" onclick="hitungPLSV()">
+Hitung x
+</button>
+
+<div class="result" id="hasilPLSV">
+Hasil akan muncul di sini.
+</div>
+
+</div>
+
+</section>
+
+<!-- SPLDV -->
+
+<section id="spldv">
+
+<div class="card">
+
+<h2>➗ Kalkulator SPLDV</h2>
+
+<p>
+Bentuk:
+<br>
+a₁x + b₁y = c₁
+<br>
+a₂x + b₂y = c₂
+</p>
+
+<div>
+<input id="a1" type="number" placeholder="a₁">
+<input id="b1" type="number" placeholder="b₁">
+<input id="c1" type="number" placeholder="c₁">
+</div>
+
+<div>
+<input id="a2" type="number" placeholder="a₂">
+<input id="b2" type="number" placeholder="b₂">
+<input id="c2" type="number" placeholder="c₂">
+</div>
+
+<button class="action" onclick="hitungSPLDV()">
+Hitung
+</button>
+
+<div class="result" id="hasilSPLDV">
+Hasil akan muncul di sini.
+</div>
+
+</div>
+
+</section>
+
+<!-- KARTESIUS -->
+
+<section id="kartesius">
+
+<div class="card">
+
+<h2>📍 Koordinat Kartesius</h2>
+
+<p>
+Klik langsung pada grafik untuk menentukan titik.
+Gunakan koordinat antara <b>-10 sampai 10</b>.
+</p>
+
+<div class="graph-box">
+
+<canvas id="grafik" width="600" height="600"></canvas>
+
+</div>
+
+<div class="coordinate" id="koordinat">
+Klik grafik untuk memilih titik.
+</div>
+
+<br>
+
+<input id="inputX" type="number" min="-10" max="10" placeholder="X">
+
+<input id="inputY" type="number" min="-10" max="10" placeholder="Y">
+
+<br>
+
+<button class="action" onclick="plotInput()">
+📍 Plot Titik
+</button>
+
+<button class="action" onclick="hapusTitik()">
+🗑 Hapus
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>📈 Grafik Persamaan Linear</h2>
+
+<p>
+Contoh grafik:
+</p>
+
+<div class="example">
+<b>y = x + 2</b>
+</div>
+
+<canvas id="grafikLinear" width="600" height="600"></canvas>
+
+</div>
+
+</section>
+
+<!-- QUIZ -->
+
+<section id="quiz">
+
+<div class="card">
+
+<h2>🧠 Quiz</h2>
+
+<p id="soal">
+Berapakah nilai x dari 2x + 4 = 10?
+</p>
+
+<button class="action" onclick="jawab(1)">2</button>
+<button class="action" onclick="jawab(2)">3</button>
+<button class="action" onclick="jawab(3)">4</button>
+<button class="action" onclick="jawab(4)">5</button>
+
+<div class="result" id="hasilQuiz">
+Pilih jawabanmu.
+</div>
+
+</div>
+
+</section>
+
+<footer>
+🌊 Matematika Kelas 9<br>
+Belajar • Berlatih • Paham
+</footer>
+
+
+<script>
+
+/* ==============================
+   NAVIGASI
+============================== */
+
+function scrollKe(id){
+    document.getElementById(id).scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+function mulai(){
+    scrollKe("materi");
+}
+
+
+/* ==============================
+   PLSV
+============================== */
+
+function hitungPLSV(){
+
+    let a = Number(document.getElementById("a").value);
+    let b = Number(document.getElementById("b").value);
+    let c = Number(document.getElementById("c").value);
+
+    let hasil = document.getElementById("hasilPLSV");
+
+    if(!a){
+        hasil.innerHTML = "⚠️ Nilai a tidak boleh 0.";
+        return;
+    }
+
+    let x = (c-b)/a;
+
+    hasil.innerHTML =
+        "x = " + x;
+}
+
+
+/* ==============================
+   SPLDV
+============================== */
+
+function hitungSPLDV(){
+
+    let a1 = Number(document.getElementById("a1").value);
+    let b1 = Number(document.getElementById("b1").value);
+    let c1 = Number(document.getElementById("c1").value);
+
+    let a2 = Number(document.getElementById("a2").value);
+    let b2 = Number(document.getElementById("b2").value);
+    let c2 = Number(document.getElementById("c2").value);
+
+    let hasil = document.getElementById("hasilSPLDV");
+
+    let D = a1*b2 - a2*b1;
+
+    if(D === 0){
+        hasil.innerHTML =
+        "⚠️ SPLDV tidak mempunyai satu solusi tunggal.";
+        return;
+    }
+
+    let Dx = c1*b2 - c2*b1;
+    let Dy = a1*c2 - a2*c1;
+
+    let x = Dx/D;
+    let y = Dy/D;
+
+    hasil.innerHTML =
+        "x = " + x + "<br>" +
+        "y = " + y +
+        "<br><br>" +
+        "Titik = (" + x + ", " + y + ")";
+}
+
+
+/* ==============================
+   GRAFIK KARTESIUS
+============================== */
+
+const canvas = document.getElementById("grafik");
+const ctx = canvas.getContext("2d");
+
+const ukuran = 600;
+const pusat = 300;
+const skala = 25;
+
+let titikX = null;
+let titikY = null;
+
+
+/* gambar grafik */
+
+function gambarKartesius(){
+
+    ctx.clearRect(0,0,ukuran,ukuran);
+
+    /* background */
+
+    ctx.fillStyle = "#03131c";
+    ctx.fillRect(0,0,ukuran,ukuran);
+
+    /* grid */
+
+    ctx.strokeStyle = "#164052";
+    ctx.lineWidth = 1;
+
+    for(let i=-10;i<=10;i++){
+
+        let pos = pusat + i*skala;
+
+        /* garis vertikal */
+
+        ctx.beginPath();
+        ctx.moveTo(pos,0);
+        ctx.lineTo(pos,ukuran);
+        ctx.stroke();
+
+        /* garis horizontal */
+
+        ctx.beginPath();
+        ctx.moveTo(0,pos);
+        ctx.lineTo(ukuran,pos);
+        ctx.stroke();
+    }
+
+    /* sumbu X */
+
+    ctx.strokeStyle = "#55dcff";
+    ctx.lineWidth = 3;
+
+    ctx.beginPath();
+    ctx.moveTo(0,pusat);
+    ctx.lineTo(ukuran,pusat);
+    ctx.stroke();
+
+    /* sumbu Y */
+
+    ctx.beginPath();
+    ctx.moveTo(pusat,0);
+    ctx.lineTo(pusat,ukuran);
+    ctx.stroke();
+
+    /* angka */
+
+    ctx.fillStyle = "#bcefff";
+    ctx.font = "12px Arial";
+
+    for(let i=-10;i<=10;i++){
+
+        if(i === 0) continue;
+
+        let x = pusat + i*skala;
+        let y = pusat - i*skala;
+
+        ctx.fillText(i,x-4,pusat+17);
+        ctx.fillText(i,pusat+7,y+4);
+    }
+
+    /* label sumbu */
+
+    ctx.font = "bold 16px Arial";
+
+    ctx.fillText("X",570,290);
+    ctx.fillText("Y",310,25);
+
+    /* kuadran */
+
+    ctx.font = "14px Arial";
+
+    ctx.fillText("I",450,120);
+    ctx.fillText("II",125,120);
+    ctx.fillText("III",120,480);
+    ctx.fillText("IV",450,480);
+
+    /* titik */
+
+    if(titikX !== null && titikY !== null){
+
+        let px = pusat + titikX*skala;
+        let py = pusat - titikY*skala;
+
+        ctx.fillStyle = "#ffcc33";
+
+        ctx.beginPath();
+        ctx.arc(px,py,7,0,Math.PI*2);
+        ctx.fill();
+
+        ctx.fillStyle = "white";
+        ctx.font = "bold 14px Arial";
+
+        ctx.fillText(
+            "(" + titikX + "," + titikY + ")",
+            px+10,
+            py-10
+        );
+    }
+}
+
+
+/* klik grafik */
+
+canvas.addEventListener("click",function(event){
+
+    let rect = canvas.getBoundingClientRect();
+
+    let xPixel =
+        event.clientX - rect.left;
+
+    let yPixel =
+        event.clientY - rect.top;
+
+    /*
+       Sesuaikan dengan ukuran canvas
+       jika tampilannya mengecil di HP.
+    */
+
+    let scaleX = canvas.width / rect.width;
+    let scaleY = canvas.height / rect.height;
+
+    xPixel *= scaleX;
+    yPixel *= scaleY;
+
+    let x =
+        Math.round((xPixel-pusat)/skala);
+
+    let y =
+        Math.round((pusat-yPixel)/skala);
+
+    if(x < -10) x=-10;
+    if(x > 10) x=10;
+
+    if(y < -10) y=-10;
+    if(y > 10) y=10;
+
+    titikX=x;
+    titikY=y;
+
+    document.getElementById("koordinat").innerHTML =
+        "📍 Titik: <b>(" +
+        x + "," + y +
+        ")</b> | " +
+        tentukanKuadran(x,y);
+
+    gambarKartesius();
+});
+
+
+/* input koordinat */
+
+function plotInput(){
+
+    let x = Number(
+        document.getElementById("inputX").value
+    );
+
+    let y = Number(
+        document.getElementById("inputY").value
+    );
+
+    if(
+        !Number.isInteger(x) ||
+        !Number.isInteger(y) ||
+        x < -10 ||
+        x > 10 ||
+        y < -10 ||
+        y > 10
+    ){
+
+        document.getElementById("koordinat").innerHTML =
+        "⚠️ Masukkan bilangan bulat dari -10 sampai 10.";
+
+        return;
+    }
+
+    titikX=x;
+    titikY=y;
+
+    document.getElementById("koordinat").innerHTML =
+        "📍 Titik: <b>(" +
+        x + "," + y +
+        ")</b> | " +
+        tentukanKuadran(x,y);
+
+    gambarKartesius();
+}
+
+
+/* hapus titik */
+
+function hapusTitik(){
+
+    titikX=null;
+    titikY=null;
+
+    document.getElementById("koordinat").innerHTML =
+        "Klik grafik untuk memilih titik.";
+
+    gambarKartesius();
+}
+
+
+/* kuadran */
+
+function tentukanKuadran(x,y){
+
+    if(x>0 && y>0)
+        return "Kuadran I";
+
+    if(x<0 && y>0)
+        return "Kuadran II";
+
+    if(x<0 && y<0)
+        return "Kuadran III";
+
+    if(x>0 && y<0)
+        return "Kuadran IV";
+
+    if(x===0 && y===0)
+        return "Titik pusat";
+
+    if(x===0)
+        return "Sumbu Y";
+
+    return "Sumbu X";
+}
+
+
+/* ==============================
+   GRAFIK y = x + 2
+============================== */
+
+const lineCanvas =
+    document.getElementById("grafikLinear");
+
+const lineCtx =
+    lineCanvas.getContext("2d");
+
+
+function gambarGaris(){
+
+    lineCtx.clearRect(
+        0,
+        0,
+        600,
+        600
+    );
+
+    lineCtx.fillStyle="#03131c";
+
+    lineCtx.fillRect(
+        0,
+        0,
+        600,
+        600
+    );
+
+    /* grid */
+
+    lineCtx.strokeStyle="#164052";
+    lineCtx.lineWidth=1;
+
+    for(let i=-10;i<=10;i++){
+
+        let p=300+i*25;
+
+        lineCtx.beginPath();
+        lineCtx.moveTo(p,0);
+        lineCtx.lineTo(p,600);
+        lineCtx.stroke();
+
+        lineCtx.beginPath();
+        lineCtx.moveTo(0,p);
+        lineCtx.lineTo(600,p);
+        lineCtx.stroke();
+    }
+
+    /* sumbu */
+
+    lineCtx.strokeStyle="#55dcff";
+    lineCtx.lineWidth=3;
+
+    lineCtx.beginPath();
+    lineCtx.moveTo(0,300);
+    lineCtx.lineTo(600,300);
+    lineCtx.stroke();
+
+    lineCtx.beginPath();
+    lineCtx.moveTo(300,0);
+    lineCtx.lineTo(300,600);
+    lineCtx.stroke();
+
+    /* garis y=x+2 */
+
+    lineCtx.strokeStyle="#ffcc33";
+    lineCtx.lineWidth=4;
+
+    lineCtx.beginPath();
+
+    let mulai=true;
+
+    for(let x=-10;x<=10;x+=0.1){
+
+        let y=x+2;
+
+        let px=300+x*25;
+        let py=300-y*25;
+
+        if(mulai){
+            lineCtx.moveTo(px,py);
+            mulai=false;
+        }else{
+            lineCtx.lineTo(px,py);
+        }
+    }
+
+    lineCtx.stroke();
+
+    /* label */
+
+    lineCtx.fillStyle="white";
+    lineCtx.font="bold 15px Arial";
+
+    lineCtx.fillText(
+        "y = x + 2",
+        430,
+        80
+    );
+}
+
+
+/* ==============================
+   QUIZ
+============================== */
+
+function jawab(jawaban){
+
+    let hasil =
+        document.getElementById("hasilQuiz");
+
+    if(jawaban === 2){
+
+        hasil.innerHTML =
+        "✅ Benar! 2x + 4 = 10 → 2x = 6 → x = 3";
+
+    }else{
+
+        hasil.innerHTML =
+        "❌ Belum tepat. Coba hitung lagi: 2x + 4 = 10.";
+    }
+}
+
+
+/* ==============================
+   JALANKAN SAAT WEBSITE DIBUKA
+============================== */
+
+gambarKartesius();
+gambarGaris();
+
+</script>
+
+</body>
+</html>
